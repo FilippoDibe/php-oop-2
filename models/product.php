@@ -4,7 +4,6 @@
         private $title;
         private $image;
         private $price;
-
         private $category;
 
         public function __construct(

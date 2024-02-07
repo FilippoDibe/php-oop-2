@@ -4,6 +4,8 @@
     require_once(__DIR__ . "/models/category.php");
     require_once(__DIR__ . "/models/food.php");
     require_once(__DIR__ . "/models/animalHouse.php");
+    // require_once(__DIR__ . "/models/discount.php");
+
 
     //categorie 
     $cat_dog = new Category( 1, "Cane", "https://c8.alamy.com/compit/2a4pg50/icona-del-cane-design-mascotte-pet-natura-animale-carino-e-cucciolo-tema-illustrazione-vettoriale-2a4pg50.jpg");

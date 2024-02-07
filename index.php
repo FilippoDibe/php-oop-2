@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Negozio di Prodotti per Animali</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <?php require_once(__DIR__ . "/db.php"); ?>
+    <title>AnimalCommerce</title>
+
+    <?php 
+    
+        require_once(__DIR__ . "/db.php"); 
+
+        try {
+
+            $test_prod = new Product(
+                10, "Te", "https://shop-cdn-m.mediazs.com/bilder/9/400/26635_pla_meradog_puppyknochen_10kg_9.jpg", 50, 20, $cat_cat, "10/05/2024"
+            );
+        } catch (Exception $e) {
+
+            echo "Impossibile creare prodotto di test: " . $e -> getMessage();
+        }
+
+        die();
+    
+    ?>
 </head>
 <body>
-    <div class="container">
-        <h1 class="my-4">Prodotti per Animali</h1>
-        <div class="row">
-            <?php foreach($prods as $prod): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <!-- Qui viene inserita l'immagine del prodotto -->
-                        <img class="card-img-top" src="<?php echo $prod->getImage(); ?>" alt="<?php echo $prod->getTitle(); ?>">
-                        <div class="card-body">
-                            <h4 class="card-title"><?php echo $prod->getTitle(); ?></h4>
-                            <p class="card-text"><?php echo $prod->getPrice(); ?> EURO</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Categoria: <?php echo $prod->getCategory()->getName(); ?></small>
-                            <img src="<?php echo $prod->getCategory()->getIcon(); ?>" alt="" width="30">
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <!-- Script di Bootstrap -->
+    
+    <ul>
+        <?php
+            foreach ($prods as $prod) {
+                
+                ?>
+
+                    <li>
+                        <h3>
+                            <?php
+                                echo $prod -> getTypology();
+                            ?>
+                        </h3>
+                        <?php
+                            echo $prod -> getTitle();
+                        ?>: 
+                        <?php
+                            echo $prod -> getPrice();
+                        ?>
+                        Euro
+                        <br>
+                        <img src="<?php echo $prod -> getImage() ?>"  width="100" />
+                        <br>
+                        Category:
+                        <img src="<?php echo $prod -> getCategory() -> getIcon() ?>"  width="30" />
+                        <?php
+                            echo $prod -> getCategory() -> getName();
+                        ?>
+                    </li>
+
+                <?php
+            }
+        ?>
+    </ul>
 </body>
 </html>
